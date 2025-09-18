@@ -1,9 +1,12 @@
 defmodule Empresa do
   def main do
+
     peso = "Ingrese el peso (kg): "
     |> ingresar_peso()
+
     tipo_cliente="Ingrese el tipo de cliente 1=corporativo 2=estudiante 3=regular: "
     |> ingresar_tipo_cliente()
+
     tipo_servicio="Ingrese el tipo de servicio 1=express 2=estandar: "
     |>ingresar_tipo_servicio
 
@@ -45,8 +48,8 @@ defmodule Empresa do
   end
 
   def determinar_tarifa(peso) when peso <= 0 do
-    "Ingrese un peso valido: "
-    |> ingresar_peso()
+    nuevo_peso = ingresar_peso("Ingrese un peso valido: ")
+    determinar_tarifa(nuevo_peso)
   end
 
   def determinar_tarifa(peso) do
@@ -79,12 +82,9 @@ defmodule Empresa do
   end
 
   def generar_mensaje(tarifa_base,descuento,recargo,total) do
-    total_descuento=descuento
-    total_recargo=recargo
-
     mensaje="La tarifa base: #{tarifa_base} \n
-    El descuento: #{:erlang.float_to_binary(total_descuento*1.0, decimals: 1)} \n
-    El recargo: #{:erlang.float_to_binary(total_recargo*1.0, decimals: 1)} \n
+    El descuento: #{:erlang.float_to_binary(descuento*1.0, decimals: 1)} \n
+    El recargo: #{:erlang.float_to_binary(recargo*1.0, decimals: 1)} \n
     En total es: #{:erlang.float_to_binary(total*1.0, decimals: 1)}"
     mensaje
   end
