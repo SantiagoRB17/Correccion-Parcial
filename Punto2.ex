@@ -28,7 +28,9 @@ defmodule Cine do
     cond do
       !existe_sala?(cine,sala) -> IO.puts("Sala no encontrada")
       !hay_sillas?(cine,sala,sillas) -> IO.puts("No hay suficientes sillas disponibles")
-      restar_sillas(cine,sala,sillas) -> IO.inspect(cine)
+      true ->
+          cine_actualizado = restar_sillas(cine, sala, sillas)
+          IO.inspect(cine_actualizado)
     end
   end
 
@@ -45,7 +47,8 @@ defmodule Cine do
   end
 
   def restar_sillas(cine,sala,sillas) do
-    Map.put(cine,sala,fn valor -> valor - sillas end)
+    nuevas_sillas = Map.get(cine, sala) - sillas
+    Map.put(cine, sala, nuevas_sillas)
   end
 
 end

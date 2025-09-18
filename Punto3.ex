@@ -20,7 +20,7 @@ defmodule ValidarContrasena do
 
   def validar_longitud(errores, password) do
     if String.length(password) < 8 do
-      errores ++ ["Debe tener al menos 8 caracteres"]
+      errores ++ ["Debe contener al menos 8 caracteres"]
     else
       errores
     end
